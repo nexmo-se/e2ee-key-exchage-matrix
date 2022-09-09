@@ -1,0 +1,51 @@
+body, html {
+    background-color: gray;
+    height: 100%;
+}
+
+#label-start-image-canvas {
+    background-color: white;
+    foreground-color: white;
+}
+
+#audio-meter {
+  display: none;
+}
+
+#audio-meter meter {
+  width: 200px;
+}
+
+#pub-audio-meter {
+  display: none;
+}
+
+#pub-audio-meter meter {
+  width: 200px;
+}
+
+#videos {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#subscriber1 {
+    position: absolute;
+    left: 300px;
+    width: 427px;
+    height: 240px;
+}
+
+#subscriber2 {
+    position: absolute;
+    left: 860px;
+    width: 427px;
+    height: 240px;
+}
+
+#publisher {
+    position: absolute;
+    width: 427px;
+    height: 240px;
+}

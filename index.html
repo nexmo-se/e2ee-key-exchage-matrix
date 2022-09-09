@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Work in progress</title>
+    <link href="css/app.css" rel="stylesheet" type="text/css" />
+    <!-- Vonage Video JS SDK -->
+    <script src="https://static.opentok.com/v2.23.3/js/opentok.min.js"></script>
+    <!-- Olm -->
+    <script src="js/olm.js"></script>
+  </head>
+  <body>
+    <div id="buttons">
+      <button style="visibility: hidden" id="start-camera">Get camera</button>
+      <button style="visibility: hidden" id="connect-publish">
+        Connect and publish as Lead
+      </button>
+      <button style="visibility: hidden" id="connect">
+        Connect and publish as participant
+      </button>
+    </div>
+    <div id="audio-meter">
+      <label for="audio-meter">Subs audio level:</label>
+      <meter min="0" max="1"></meter>
+    </div>
+    <div id="pub-audio-meter">
+      <label for="audio-meter">Pub audio level:</label>
+      <meter min="0" max="1"></meter>
+    </div>
+    <div id="canvas-div"></div>
+    <div id="camera-render-div">
+      <video autoplay="true" id="camera-render" src=""></video>
+    </div>
+    <div id="videos">
+      <div id="publisher"></div>
+      <div id="subscriber1"></div>
+      <div id="subscriber2"></div>
+    </div>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
