@@ -23,7 +23,7 @@ Read https://matrix.org/docs/guides/end-to-end-encryption-implementation-guide f
 
 ## Usage
 
-- Start server by running node server.js
+- Create a `env` file as per `.env.example` and start the server by running node server.js
 - Open index.html on a browser supported by OpenTok E2E encryption, open several tabs
 - Choose one of the browser tabs as the "lead" client. Click "Get camera" and "Connect and publish as lead", this will start publishing from that client
 - On the other tabs, click "Connect and publish as participant" to join the session and publish. Check the console to see the E2E secret changes and messages exchanged
