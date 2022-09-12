@@ -2,7 +2,7 @@ import { OTOlmUser } from './app_olm.js';
 
 // session has to be created enabling e2e
 var apiKey = '';
-var sessionId = '-MTY2MjcyNzQ5OTgyOH5uNWVnakFJNERMUWNjNEpXVmRxdC8xVnV-UEV-';
+var sessionId = '';
 var token = '';
 var SAMPLE_SERVER_BASE_URL = 'http://localhost:3000';
 let publisher;
