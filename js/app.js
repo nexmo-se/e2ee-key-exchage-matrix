@@ -1,11 +1,9 @@
 import { OTOlmUser } from './app_olm.js';
 
 // session has to be created enabling e2e
-var apiKey = '46264952';
-var sessionId =
-  '2_MX40NjI2NDk1Mn5-MTY2MjcyNzQ5OTgyOH5uNWVnakFJNERMUWNjNEpXVmRxdC8xVnV-UEV-';
-var token =
-  'T1==cGFydG5lcl9pZD00NjI2NDk1MiZzaWc9ZjMyOTQwYTA3NDk1NWRjNDM2OTc1MTlhNjQzY2NmOGY3MTY2ODcwNTpzZXNzaW9uX2lkPTJfTVg0ME5qSTJORGsxTW41LU1UWTJNamN5TnpRNU9UZ3lPSDV1TldWbmFrRkpORVJNVVdOak5FcFhWbVJ4ZEM4eFZuVi1VRVYtJmNyZWF0ZV90aW1lPTE2NjI3Mjc1MjYmbm9uY2U9MC43NzI3MzYyMTgwNTU5NDUyJnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE2NjMzMzIzMjUmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0=';
+var apiKey = '';
+var sessionId = '-MTY2MjcyNzQ5OTgyOH5uNWVnakFJNERMUWNjNEpXVmRxdC8xVnV-UEV-';
+var token = '';
 var SAMPLE_SERVER_BASE_URL = 'http://localhost:3000';
 let publisher;
 
@@ -16,7 +14,7 @@ function handleError(error) {
 }
 
 async function initPublisher() {
-  publisher = OT.initPublisher('publisher', function (err) {
+  publisher = OT.initPublisher('publisher', {}, function (err) {
     if (err) {
       console.error('init publisher error', err);
       return;
@@ -248,9 +246,9 @@ function sendOlmGroup(groupSession, stringGroupMsg, otSession) {
 }
 // end of olm
 
-function startSession(startPublishing) {
+function startSession(leadClient) {
   // Olm
-  if (startPublishing) {
+  if (leadClient) {
     publisherOlmUser = new OTOlmUser();
     thisOlmUser = publisherOlmUser;
     // publisher creates the group session
@@ -324,7 +322,7 @@ function startSession(startPublishing) {
           );
           // sets the groupSession in motion if we are the publisher
           // FOR_PRODUCTION: this should be done by the "lead" client
-          if (startPublishing) {
+          if (leadClient) {
             const groupSessionMaterialMsg = getJsonGroupSessionKeyData(
               olmOutboundGroupSession
             );
@@ -530,7 +528,7 @@ function startSession(startPublishing) {
       // olm
       const remoteConnectionId = event.connection.connectionId;
       removeOlmPeer(remoteConnectionId);
-      if (startPublishing) {
+      if (leadClient) {
         // send a new group message, to rotate the group session, the message includes the encrypted group session key
         // group message recipients will change the OT session E2E secret to the received group session key value
         // FOR_PRODUCTION: this should be done by the "lead" client
@@ -568,7 +566,7 @@ function startSession(startPublishing) {
     },
 
     sessionConnected: function () {
-      // if (startPublishing) {
+      // if (leadClient) {
       console.log('session connected, start to publish');
       publisher.on('streamCreated', function (event) {
         console.log('Publisher started streaming');

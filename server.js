@@ -33,12 +33,21 @@ const createSession = async () => {
 
 app.get('/creds', async (req, res) => {
   try {
-    const session = await createSession();
-    res.send({
-      sessionId: session.sessionId,
-      api_key: process.env.api_key,
-      token: opentok.generateToken(session.sessionId),
-    });
+    if (app.get('sessionId')) {
+      res.send({
+        sessionId: app.get('sessionId'),
+        api_key: process.env.api_key,
+        token: opentok.generateToken(app.get('sessionId')),
+      });
+    } else {
+      const session = await createSession();
+      app.set('sessionId', session.sessionId);
+      res.send({
+        sessionId: session.sessionId,
+        api_key: process.env.api_key,
+        token: opentok.generateToken(session.sessionId),
+      });
+    }
     // res.send('okay');
   } catch (e) {
     console.log(e);
